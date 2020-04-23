@@ -5,12 +5,22 @@ public class RoomMemberLocationItem {
     String userEmail;
     double latitude;
     double longitude;
+    boolean locationUpdate;
 
     public RoomMemberLocationItem(){
         userName = "";
         userEmail = "";
         latitude = 0;
         longitude = 0;
+        locationUpdate = false;
+    }
+
+    public boolean isLocationUpdate() {
+        return locationUpdate;
+    }
+
+    public void setLocationUpdate(boolean locationUpdate) {
+        this.locationUpdate = locationUpdate;
     }
 
     public double getLatitude() {

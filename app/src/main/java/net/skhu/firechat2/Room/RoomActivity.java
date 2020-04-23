@@ -47,6 +47,7 @@ import com.google.firebase.storage.StorageReference;
 import net.skhu.firechat2.FirebaseDBService.FileUploadActivity;
 import net.skhu.firechat2.FirebaseDBService.FirebaseDbService;
 import net.skhu.firechat2.FirebaseDBService.FirebaseDbServiceForRoomMemberList;
+import net.skhu.firechat2.FirebaseDBService.FirebaseDbServiceForRoomMemberLocationList;
 import net.skhu.firechat2.FirebaseDBService.MusicUploadActivity;
 import net.skhu.firechat2.FirebaseDBService.VideoUploadActivity;
 import net.skhu.firechat2.InitInformDialog;
@@ -55,9 +56,12 @@ import net.skhu.firechat2.Item.ItemList;
 import net.skhu.firechat2.Item.RoomMemberItem;
 import net.skhu.firechat2.Item.RoomMemberItemList;
 import net.skhu.firechat2.Item.RoomMemberLocationItem;
+import net.skhu.firechat2.Item.RoomMemberLocationItemList;
 import net.skhu.firechat2.R;
 import net.skhu.firechat2.Room.Member.RoomMemberListActivity;
+import net.skhu.firechat2.Room.MemberLocation.GpsTracker;
 import net.skhu.firechat2.Room.MemberLocation.RoomMemberLocationListActivity;
+import net.skhu.firechat2.Room.MemberLocation.RoomMemberLocationRecyclerViewAdapter;
 import net.skhu.firechat2.UnCatchTaskService;
 
 import java.io.File;
@@ -116,6 +120,11 @@ public class RoomActivity extends AppCompatActivity {
     private static final int PERMISSIONS_REQUEST_CODE = 100;
     String[] REQUIRED_PERMISSIONS  = {Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION};
 
+    RoomMemberLocationItemList roomMemberLocationItemList;
+    FirebaseDbServiceForRoomMemberLocationList firebaseDbServiceForRoomMemberLocationList;
+    RoomMemberLocationRecyclerViewAdapter roomMemberLocationRecyclerViewAdapter;
+    private GpsTracker gpsTracker;
+
     // 로그인 액티비티를 호출할 때, 사용할 요청 식별 번호(request code) 이다.
     static final int RC_SIGN_IN = 337;
 
@@ -144,7 +153,23 @@ public class RoomActivity extends AppCompatActivity {
 
         initRecyclerView(); // 리사이클러뷰 초기화
 
-        //initRecyclerViewRoomMemberList();
+        initRecyclerViewRoomMemberLocationList();// 리사이클러뷰 초기화
+
+        gpsTracker = new GpsTracker(RoomActivity.this);
+
+        double latitude = gpsTracker.getLatitude();
+        double longitude = gpsTracker.getLongitude();
+
+        String address = getCurrentAddress(latitude, longitude);
+
+        RoomMemberLocationItem roomMemberLocationItem = new RoomMemberLocationItem();
+        roomMemberLocationItem.setUserName(userName);
+        roomMemberLocationItem.setUserEmail(userEmail);
+        roomMemberLocationItem.setLatitude(latitude);
+        roomMemberLocationItem.setLongitude(longitude);
+        firebaseDbServiceForRoomMemberLocationList.addIntoServer(roomMemberLocationItem);
+
+        Toast.makeText(RoomActivity.this, "현재위치 \n위도 " + latitude + "\n경도 " + longitude, Toast.LENGTH_LONG).show();
     }
 
     // 리사이클러뷰 초기화 작업
@@ -276,11 +301,11 @@ public class RoomActivity extends AppCompatActivity {
         }
         else if (id == R.id.action_showRoomMember) {
 
-            Intent intent = new Intent(this, RoomMemberListActivity.class);
+            /*Intent intent = new Intent(this, RoomMemberListActivity.class);
             intent.putExtra("roomKey", roomKey);
             intent.putExtra("userName", userName);
             intent.putExtra("userEmail", userEmail);
-            startActivityForResult(intent, SHOW_ROOM_MEMBER);
+            startActivityForResult(intent, SHOW_ROOM_MEMBER);*/
         }
         else if (id == R.id.action_showMemberLocation) {
 
@@ -671,5 +696,36 @@ public class RoomActivity extends AppCompatActivity {
     @Override
     public void onDestroy() {
         super.onDestroy();
+
+        int index = -1;
+        for (int i = 0; i < roomMemberLocationItemList.size(); i++){
+            if (roomMemberLocationItemList.get(i).getUserEmail().equals(userEmail)){
+                index = i;
+                break;
+            }
+        }
+
+        if (index >=0 ) {
+            firebaseDbServiceForRoomMemberLocationList.removeFromServer(roomMemberLocationItemList.getKey(index));
+        }
+    }
+
+    // 리사이클러뷰 초기화 작업
+    private void initRecyclerViewRoomMemberLocationList() {
+        roomMemberLocationItemList = new RoomMemberLocationItemList(); // 데이터 목록 객체 생성
+
+        /*// 리사이클러 뷰 설정
+        roomMemberLocationRecyclerViewAdapter = new RoomMemberLocationRecyclerViewAdapter(this, roomMemberLocationItemList);
+        final RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerViewRoomMemberLocationList);
+        recyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
+        recyclerView.setAdapter(roomMemberLocationRecyclerViewAdapter);*/
+
+        // firebase DB 서비스 생성
+        //FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        //String userId = (user != null) ? user.getUid() : "anonymous";
+        firebaseDbServiceForRoomMemberLocationList = new FirebaseDbServiceForRoomMemberLocationList(this,
+                null, roomMemberLocationItemList, null, roomKey);
     }
 }

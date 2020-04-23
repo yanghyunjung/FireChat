@@ -40,6 +40,8 @@ public class RoomMemberLocationRecyclerViewAdapter extends RecyclerView.Adapter<
         @Override
         public void onClick(View view) {
             RoomMemberLocationListActivity activity = (RoomMemberLocationListActivity)view.getContext();
+            activity.firebaseDbServiceForRoomMemberLocationList.updateInServer(super.getAdapterPosition());
+
             RoomMemberLocationItem roomMemberLocationItem = activity.roomMemberLocationItemList.get(super.getAdapterPosition());
 
             Toast.makeText(activity.getApplicationContext(), "현재위치 \n위도 " + roomMemberLocationItem.getLatitude() + "\n경도 " + roomMemberLocationItem.getLongitude(), Toast.LENGTH_SHORT).show();

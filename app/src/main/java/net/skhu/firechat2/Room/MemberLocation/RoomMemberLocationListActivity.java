@@ -67,23 +67,6 @@ public class RoomMemberLocationListActivity extends AppCompatActivity {
 
         initRecyclerViewRoomMemberLocationList();
 
-        //roomMemberRecyclerViewAdapter.notifyDataSetChanged();
-
-        gpsTracker = new GpsTracker(RoomMemberLocationListActivity.this);
-
-        double latitude = gpsTracker.getLatitude();
-        double longitude = gpsTracker.getLongitude();
-
-        String address = getCurrentAddress(latitude, longitude);
-
-        RoomMemberLocationItem roomMemberLocationItem = new RoomMemberLocationItem();
-        roomMemberLocationItem.setUserName(userName);
-        roomMemberLocationItem.setUserEmail(userEmail);
-        roomMemberLocationItem.setLatitude(latitude);
-        roomMemberLocationItem.setLongitude(longitude);
-        firebaseDbServiceForRoomMemberLocationList.addIntoServer(roomMemberLocationItem);
-
-        Toast.makeText(RoomMemberLocationListActivity.this, "현재위치 \n위도 " + latitude + "\n경도 " + longitude, Toast.LENGTH_LONG).show();
     }
 
     // 리사이클러뷰 초기화 작업
@@ -297,7 +280,7 @@ public class RoomMemberLocationListActivity extends AppCompatActivity {
         super.onDestroy();
 
         //if (firebaseDbServiceForRoomMemberList!=null&&roomMemberItemList!=null){
-        int index = -1;
+        /*int index = -1;
         for (int i = 0; i < roomMemberLocationItemList.size(); i++){
             if (roomMemberLocationItemList.get(i).getUserEmail().equals(userEmail)){
                 index = i;
@@ -307,7 +290,7 @@ public class RoomMemberLocationListActivity extends AppCompatActivity {
 
         if (index >=0 ) {
             firebaseDbServiceForRoomMemberLocationList.removeFromServer(roomMemberLocationItemList.getKey(index));
-        }
+        }*/
         //}
     }
 }

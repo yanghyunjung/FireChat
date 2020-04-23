@@ -16,7 +16,9 @@ import net.skhu.firechat2.Item.RoomMemberItemList;
 import net.skhu.firechat2.Item.RoomMemberLocationItem;
 import net.skhu.firechat2.Item.RoomMemberLocationItemList;
 import net.skhu.firechat2.Room.Member.RoomMemberRecyclerViewAdapter;
+import net.skhu.firechat2.Room.MemberLocation.GpsTracker;
 import net.skhu.firechat2.Room.MemberLocation.RoomMemberLocationRecyclerViewAdapter;
+import net.skhu.firechat2.Room.RoomActivity;
 
 import java.io.File;
 
@@ -44,6 +46,8 @@ public class FirebaseDbServiceForRoomMemberLocationList implements ChildEventLis
     int selectPhotoIndex;
 
     String userKey;
+
+    private GpsTracker gpsTracker;
 
     public FirebaseDbServiceForRoomMemberLocationList(Context context, RoomMemberLocationRecyclerViewAdapter roomMemberLocationRecyclerViewAdapter, RoomMemberLocationItemList roomMemberLocationItemList, RecyclerView recyclerView, String roomKey) {
         this.roomMemberLocationRecyclerViewAdapter = roomMemberLocationRecyclerViewAdapter;
@@ -113,6 +117,19 @@ public class FirebaseDbServiceForRoomMemberLocationList implements ChildEventLis
         RoomMemberLocationItem roomMemberLocationItem = dataSnapshot.getValue(net.skhu.firechat2.Item.RoomMemberLocationItem.class); // 수정된 데이터 항목을 꺼낸다.
         int index = roomMemberLocationItemList.update(key, roomMemberLocationItem);  // 수정된 데이터를 itemList에 대입한다.
         // 전에 key 값으로 등록되었던 데이터가  덮어써진다. (overwrite)
+
+        if (userKey == key){
+
+            gpsTracker = new GpsTracker(context);
+
+            double latitude = gpsTracker.getLatitude();
+            double longitude = gpsTracker.getLongitude();
+            if (roomMemberLocationItemList.get(roomMemberLocationItemList.findIndex(userKey)).getLatitude() != latitude &&
+                    roomMemberLocationItemList.get(roomMemberLocationItemList.findIndex(userKey)).getLongitude() != longitude) {
+                updateInServer(roomMemberLocationItemList.findIndex(userKey));
+            }
+        }
+
         if (roomMemberLocationRecyclerViewAdapter != null) {
             roomMemberLocationRecyclerViewAdapter.notifyItemChanged(index); // RecyclerView를 다시 그린다.
             //roomMemberRecyclerViewAdapter.notifyDataSetChanged();
