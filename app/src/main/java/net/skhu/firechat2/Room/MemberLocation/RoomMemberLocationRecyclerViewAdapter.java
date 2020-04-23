@@ -40,6 +40,7 @@ public class RoomMemberLocationRecyclerViewAdapter extends RecyclerView.Adapter<
         @Override
         public void onClick(View view) {
             RoomMemberLocationListActivity activity = (RoomMemberLocationListActivity)view.getContext();
+
             activity.firebaseDbServiceForRoomMemberLocationList.updateInServer(super.getAdapterPosition());
 
             RoomMemberLocationItem roomMemberLocationItem = activity.roomMemberLocationItemList.get(super.getAdapterPosition());

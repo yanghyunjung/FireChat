@@ -89,6 +89,19 @@ public class FirebaseDbServiceForRoomMemberLocationList implements ChildEventLis
         // 서버에서 데이터를 update 한다.
         String key = roomMemberLocationItemList.getKey(index);
         RoomMemberLocationItem roomMemberLocationItem = roomMemberLocationItemList.get(index);
+
+        if (userKey == key){
+            gpsTracker = new GpsTracker(context);
+
+            double latitude = gpsTracker.getLatitude();
+            double longitude = gpsTracker.getLongitude();
+            if (roomMemberLocationItem.getLatitude() != latitude &&
+                    roomMemberLocationItem.getLongitude() != longitude) {
+                roomMemberLocationItem.setLatitude(latitude);
+                roomMemberLocationItem.setLongitude(longitude);
+            }
+        }
+
         databaseReference.child(roomKey).child("RoomMemberLocationList").child(key).setValue(roomMemberLocationItem);
     }
 
