@@ -49,6 +49,7 @@ import net.skhu.firechat2.FirebaseDBService.FirebaseDbService;
 import net.skhu.firechat2.FirebaseDBService.FirebaseDbServiceForRoomMemberList;
 import net.skhu.firechat2.FirebaseDBService.FirebaseDbServiceForRoomMemberLocationList;
 import net.skhu.firechat2.FirebaseDBService.MusicUploadActivity;
+import net.skhu.firechat2.FirebaseDBService.PhotoUploadActivity;
 import net.skhu.firechat2.FirebaseDBService.VideoUploadActivity;
 import net.skhu.firechat2.InitInformDialog;
 import net.skhu.firechat2.Item.Item;
@@ -303,7 +304,7 @@ public class RoomActivity extends AppCompatActivity {
         } else if (id == R.id.scroll) {
             this.showScrollDialog();
         } else if (id == R.id.action_photoUpload) {
-            Intent intent = new Intent(this, FileUploadActivity.class);
+            Intent intent = new Intent(this, PhotoUploadActivity.class);
             startActivityForResult(intent, DOWNLOAD_PHOTO);
             return true;
         } else if (id == R.id.action_videoUpload) {
