@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.fragment.app.DialogFragment;
 
@@ -38,6 +39,12 @@ public class RoomCreateDialog  extends DialogFragment {
             // 대화상자의 '확인' 버튼이 클릭되면 실행되는 메소드
             public void onClick(DialogInterface dialog, int which) {
                 CharSequence s1 = editTextRoomTitle.getText();
+
+                /*if (s1.toString().equals(activity.CanNotCreateRoomName)){
+                    Toast.makeText(activity, activity.CanNotCreateRoomName, Toast.LENGTH_LONG).show();
+                    Toast.makeText(activity, R.string.can_not_create, Toast.LENGTH_SHORT).show();
+                    return;
+                }*/
 
                 if (!s1.toString().isEmpty()) {
                     roomItem.setRoomName(s1.toString());
