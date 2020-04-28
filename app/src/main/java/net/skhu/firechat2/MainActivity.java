@@ -175,6 +175,7 @@ public class MainActivity extends AppCompatActivity {
         }
         else if (id == R.id.action_create_room){
             this.showRoomCreateDialog();
+            return true;
         }
 
 
