@@ -104,6 +104,7 @@ public class RoomActivity extends AppCompatActivity {
 
     String roomKey;
     String roomName;
+    String roomMemberLocationKey;
 
     final int DOWNLOAD_MUSIC = 4;
     String downloadMusicFileName;
@@ -140,10 +141,11 @@ public class RoomActivity extends AppCompatActivity {
 
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
-            roomKey = extras.getString("RoomKey");
+            roomKey = extras.getString("roomKey");
             userName = extras.getString("userName");
-            roomName = extras.getString("RoomName");
+            roomName = extras.getString("roomName");
             userEmail = extras.getString("userEmail");
+            roomMemberLocationKey = extras.getString("roomMemberLocationKey");
         }
 
         mContext = this;
@@ -229,7 +231,7 @@ public class RoomActivity extends AppCompatActivity {
         //FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         //String userId = (user != null) ? user.getUid() : "anonymous";
         firebaseDbServiceForRoomMemberLocationList = new FirebaseDbServiceForRoomMemberLocationList(this,
-                null, roomMemberLocationItemList, null, roomKey, roomName);
+                null, roomMemberLocationItemList, null, roomKey, roomName, roomMemberLocationKey);
     }
 
     public void initCheckBoxScroll(){
@@ -330,6 +332,7 @@ public class RoomActivity extends AppCompatActivity {
             intent.putExtra("userName", userName);
             intent.putExtra("userEmail", userEmail);
             intent.putExtra("roomName", roomName);
+            intent.putExtra("roomMemberLocationKey", roomMemberLocationKey);
             startActivityForResult(intent, SHOW_ROOM_MEMBER_LOCATION);
         }
         else if (id == R.id.action_showMidpoint) {
