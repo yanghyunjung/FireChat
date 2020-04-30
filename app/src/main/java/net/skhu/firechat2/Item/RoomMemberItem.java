@@ -4,7 +4,7 @@ import android.location.Location;
 
 import java.io.Serializable;
 
-public class RoomMemberItem implements Serializable {
+public class RoomMemberItem implements Serializable {//Serializable마킹 인터페이스, 이게 있어야, Activity끼리 객체를 전달할 수 있습니다.
     String userName;
     String userEmail;
     double latitude;
