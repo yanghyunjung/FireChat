@@ -1,5 +1,6 @@
 package net.skhu.firechat2.Room;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -53,6 +54,10 @@ public class PhotoPreview extends AppCompatActivity {
     @Override public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.action_delete) {
+            //Intent intent = new Intent();
+            //intent.putExtra("selectIndex", selectIndex);
+            //setResult(Activity.RESULT_OK, intent);
+
             String key = ((RoomActivity) RoomActivity.mContext).itemList.getKey(selectIndex);
             ((RoomActivity) RoomActivity.mContext).firebaseDbService.removeFromServer(key);
             finish();
