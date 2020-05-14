@@ -1,14 +1,5 @@
 package net.skhu.firechat2.Room.MemberLocation;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-import androidx.recyclerview.widget.DefaultItemAnimator;
-import androidx.recyclerview.widget.DividerItemDecoration;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.Manifest;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -20,17 +11,21 @@ import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.widget.Toast;
 
-import net.skhu.firechat2.FirebaseDBService.FirebaseDbServiceForRoomMemberList;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import net.skhu.firechat2.FirebaseDBService.FirebaseDbServiceForRoomMemberLocationList;
-import net.skhu.firechat2.Item.RoomMemberItem;
-import net.skhu.firechat2.Item.RoomMemberItemList;
 import net.skhu.firechat2.Item.RoomMemberLocationItem;
 import net.skhu.firechat2.Item.RoomMemberLocationItemList;
 import net.skhu.firechat2.R;
-import net.skhu.firechat2.Room.Member.RoomMemberRecyclerViewAdapter;
 import net.skhu.firechat2.UnCatchTaskService;
 
 import java.io.IOException;
@@ -75,6 +70,8 @@ public class RoomMemberLocationListActivity extends AppCompatActivity {
             roomName = extras.getString("roomName");
             roomMemberLocationKey = extras.getString("roomMemberLocationKey");
         }
+
+        this.selectIndex=-1;
 
         initRecyclerViewRoomMemberLocationList();
 
@@ -298,7 +295,7 @@ public class RoomMemberLocationListActivity extends AppCompatActivity {
     }
 
     public void intentMap(int selectIndex){
-        if (this.selectIndex == selectIndex) {//사용자가 클릭한, index일 때, 구글 지도로 넘겨주도록 했습니다.
+        if (this.selectIndex == selectIndex) {//사용자가 클릭한, index 일 때, 구글 지도로 넘겨주도록 했습니다.
             RoomMemberLocationItem roomMemberLocationItem = roomMemberLocationItemList.get(selectIndex);//업데이트 받은 것 저장
 
             Log.v("pjw", "현재위치 \n위도 " + roomMemberLocationItem.getLatitude() + "\n경도 " + roomMemberLocationItem.getLongitude());
@@ -326,6 +323,7 @@ public class RoomMemberLocationListActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        this.selectIndex = -1;//다시 앱으로 돌아왔을 때, 갑자기 지도로 넘어가지 않도록 하기 위함입니다.
         //t1.append( "재개\n");
     }
 
