@@ -11,12 +11,14 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import net.skhu.firechat2.Item.Item;
 import net.skhu.firechat2.Room.BooleanCommunication;
 import net.skhu.firechat2.Item.RoomItem;
 import net.skhu.firechat2.Item.RoomItemList;
 import net.skhu.firechat2.RoomRecyclerViewAdapter;
 
 import java.io.File;
+import java.util.Iterator;
 
 public class FirebaseDbServiceForRoom implements ChildEventListener {
 
@@ -73,14 +75,21 @@ public class FirebaseDbServiceForRoom implements ChildEventListener {
         //RoomItem roomItem = roomItemList.get(roomItemList.findIndex(key));
     }
 
-    public void removeAllFromServer(){
-        for (int i = 0; i < roomItemList.size(); i++){
-            String key = roomItemList.getKey(i);
-            databaseReference.child(key).removeValue();
+    /*public void removeAllFromServer(){
+//        for (int i = 0; i < roomItemList.size(); i++){
+//            String key = roomItemList.getKey(i);
+//            databaseReference.child(key).removeValue();
 
             //RoomItem roomItem = roomItemList.get(roomItemList.findIndex(key));
+//        }
+
+        Iterator<String> iterator = roomItemList.getIteratorKeys();
+        while (iterator.hasNext()) {
+            String key = iterator.next();
+
+            databaseReference.child(key).removeValue();
         }
-    }
+    }*/
 
     public void updateInServer(int index) {
         // 서버에서 데이터를 update 한다.

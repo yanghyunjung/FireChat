@@ -11,6 +11,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import net.skhu.firechat2.Item.Item;
 import net.skhu.firechat2.Item.RoomMemberLocationItem;
 import net.skhu.firechat2.Item.RoomMemberLocationItemList;
 import net.skhu.firechat2.ListenerInterface.OnChildChangedLocationListener;
@@ -18,6 +19,7 @@ import net.skhu.firechat2.Room.MemberLocation.GpsTracker;
 import net.skhu.firechat2.Room.MemberLocation.RoomMemberLocationRecyclerViewAdapter;
 
 import java.io.File;
+import java.util.Iterator;
 
 public class FirebaseDbServiceForRoomMemberLocationList implements ChildEventListener {
 
@@ -98,12 +100,19 @@ public class FirebaseDbServiceForRoomMemberLocationList implements ChildEventLis
         databaseReference.child(roomKey).child(roomMemberLocationKey).child(RoomMemberLocationList).child(key).removeValue();
     }
 
-    public void removeAllFromServer(){
-        for (int i = 0; i < roomMemberLocationItemList.size(); i++){
-            String key = roomMemberLocationItemList.getKey(i);
+/*    public void removeAllFromServer(){
+//        for (int i = 0; i < roomMemberLocationItemList.size(); i++){
+//            String key = roomMemberLocationItemList.getKey(i);
+//            databaseReference.child(roomKey).child(roomMemberLocationKey).child(RoomMemberLocationList).child(key).removeValue();
+//        }
+
+        Iterator<String> iterator = roomMemberLocationItemList.getIteratorKeys();
+        while (iterator.hasNext()) {
+            String key = iterator.next();
+
             databaseReference.child(roomKey).child(roomMemberLocationKey).child(RoomMemberLocationList).child(key).removeValue();
         }
-    }
+    }*/
 
     public void updateInServer(int index) {
         // 서버에서 데이터를 update 한다.
