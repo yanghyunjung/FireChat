@@ -289,6 +289,8 @@ public class RoomMemberLocationListActivity extends AppCompatActivity {
     public void intentMapInit(int selectIndex){
         this.selectIndex = selectIndex;
 
+        firebaseDbServiceForRoomMemberLocationList.updateInServer(selectIndex);//상대 방에게 업데이트 요청
+
         LocationIntentThread locationIntentThread = new LocationIntentThread(this, selectIndex);
         Thread thread = new Thread(locationIntentThread, "locationIntentThread");
         thread.start();

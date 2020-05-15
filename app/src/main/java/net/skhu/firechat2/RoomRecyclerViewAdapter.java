@@ -15,6 +15,7 @@ import net.skhu.firechat2.Item.Item;
 import net.skhu.firechat2.Item.RoomItem;
 import net.skhu.firechat2.Item.RoomItemList;
 import net.skhu.firechat2.Item.RoomMemberItem;
+import net.skhu.firechat2.ListenerInterface.OnClickRoomListener;
 import net.skhu.firechat2.Room.RoomActivity;
 
 public class RoomRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
@@ -37,14 +38,7 @@ public class RoomRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.V
 
         @Override
         public void onClick(View view) {
-            MainActivity activity = (MainActivity)view.getContext();
-           /* activity.firebaseDbServiceForRoomMemberList = new FirebaseDbServiceForRoomMemberList(null, null, activity.roomMemberItemList, null, roomItemList.getKey(super.getAdapterPosition()));
-
-            RoomMemberItem roomMemberItem = new RoomMemberItem();
-            roomMemberItem.setUserName(activity.userName);
-            roomMemberItem.setUserEmail(activity.userEmail);
-            activity.firebaseDbServiceForRoomMemberList.addIntoServer(roomMemberItem);*/
-
+           /* MainActivity activity = (MainActivity)view.getContext();
 
             //방으로 들어가는 Intent
             Intent intent = new Intent(activity, RoomActivity.class);
@@ -54,20 +48,24 @@ public class RoomRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.V
             intent.putExtra("userEmail", activity.userEmail);
             intent.putExtra("roomMemberLocationKey", roomItemList.get(super.getAdapterPosition()).getRoomMemberLocationKey());
 
-            activity.startActivityForResult(intent, activity.ROOM);
+            activity.startActivityForResult(intent, activity.ROOM);*/
+
+            onClickRoomListener.onClickRoomListener(super.getAdapterPosition());
         }
     }
 
     LayoutInflater layoutInflater;
     RoomItemList roomItemList;
     Context context;
+    OnClickRoomListener onClickRoomListener;
 
     final int ROOM=0;
 
-    public RoomRecyclerViewAdapter(Context context, RoomItemList roomItemList) {
+    public RoomRecyclerViewAdapter(Context context, RoomItemList roomItemList, OnClickRoomListener onClickRoomListener) {
         this.layoutInflater = LayoutInflater.from(context);
         this.context = context;
         this.roomItemList = roomItemList;
+        this.onClickRoomListener = onClickRoomListener;
     }
 
     @Override
