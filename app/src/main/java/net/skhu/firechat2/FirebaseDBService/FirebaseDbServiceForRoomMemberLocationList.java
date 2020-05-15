@@ -124,8 +124,8 @@ public class FirebaseDbServiceForRoomMemberLocationList implements ChildEventLis
 
             double latitude = gpsTracker.getLatitude();
             double longitude = gpsTracker.getLongitude();
-            if (roomMemberLocationItem.getLatitude() != latitude &&
-                    roomMemberLocationItem.getLongitude() != longitude) {
+
+            if (diffLocation(roomMemberLocationItem, latitude, longitude)) {
                 roomMemberLocationItem.setLatitude(latitude);
                 roomMemberLocationItem.setLongitude(longitude);
             }
@@ -141,13 +141,24 @@ public class FirebaseDbServiceForRoomMemberLocationList implements ChildEventLis
 
         double latitude = gpsTracker.getLatitude();
         double longitude = gpsTracker.getLongitude();
-        if (roomMemberLocationItem.getLatitude() != latitude &&
-                roomMemberLocationItem.getLongitude() != longitude) {
+
+        if (diffLocation(roomMemberLocationItem, latitude, longitude)) {
             roomMemberLocationItem.setLatitude(latitude);
             roomMemberLocationItem.setLongitude(longitude);
+
+            databaseReference.child(roomKey).child(roomMemberLocationKey).child(RoomMemberLocationList).child(userKey).setValue(roomMemberLocationItem);
         }
 
-        databaseReference.child(roomKey).child(roomMemberLocationKey).child(RoomMemberLocationList).child(userKey).setValue(roomMemberLocationItem);
+        //databaseReference.child(roomKey).child(roomMemberLocationKey).child(RoomMemberLocationList).child(userKey).setValue(roomMemberLocationItem);
+    }
+
+    public boolean diffLocation(RoomMemberLocationItem roomMemberLocationItem, double latitude, double longitude){
+        if (roomMemberLocationItem.getLatitude() != latitude &&
+                roomMemberLocationItem.getLongitude() != longitude) {
+            return true;
+        }
+
+        return false;
     }
 
     public void updateInServerAll() {
