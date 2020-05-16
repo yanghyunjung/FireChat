@@ -120,7 +120,7 @@ public class MainActivity extends AppCompatActivity {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         String userId = (user != null) ? user.getUid() : "anonymous";
         firebaseDbServiceForRoom = new FirebaseDbServiceForRoom(this,
-                roomRecyclerViewAdapter, userId, recyclerView);
+                roomRecyclerViewAdapter, userId);
 
         //this.showRenameDialog();
 
