@@ -11,15 +11,13 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import net.skhu.firechat2.Item.Item;
 import net.skhu.firechat2.Item.RoomMemberLocationItem;
 import net.skhu.firechat2.Item.RoomMemberLocationItemList;
-import net.skhu.firechat2.ListenerInterface.OnChildChangedLocationListener;
+import net.skhu.firechat2.ListenerInterface.RoomLocationListener.OnChildChangedLocationListener;
 import net.skhu.firechat2.Room.MemberLocation.GpsTracker;
 import net.skhu.firechat2.Room.MemberLocation.RoomMemberLocationRecyclerViewAdapter;
 
 import java.io.File;
-import java.util.Iterator;
 
 public class FirebaseDbServiceForRoomMemberLocationList implements ChildEventListener {
 
@@ -188,8 +186,8 @@ public class FirebaseDbServiceForRoomMemberLocationList implements ChildEventLis
         // DB에 새 데이터 항목이 등록되었을 때, 이 메소드가 자동으로 호출된다.
         // dataSnapshot은 서버에서 등록된 새 데이터 항목이다.
         String key = dataSnapshot.getKey(); // 새 데이터 항목의 키 값을 꺼낸다.
-        RoomMemberLocationItem RoomMemberLocationItem = dataSnapshot.getValue(net.skhu.firechat2.Item.RoomMemberLocationItem.class);  // 새 데이터 항목을 꺼낸다.
-        int index = roomMemberLocationItemList.add(key, RoomMemberLocationItem); // 새 데이터를 itemList에 등록한다.
+        RoomMemberLocationItem roomMemberLocationItem = dataSnapshot.getValue(net.skhu.firechat2.Item.RoomMemberLocationItem.class);  // 새 데이터 항목을 꺼낸다.
+        int index = roomMemberLocationItemList.add(key, roomMemberLocationItem); // 새 데이터를 itemList에 등록한다.
         // key 값으로 등록된 데이터 항목이 없었기 때문에 새 데이터 항목이 등록된다.
 
         selectIndex = index;

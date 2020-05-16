@@ -1,13 +1,8 @@
 package net.skhu.firechat2.Room;
 
 import android.content.Context;
-import android.content.Intent;
-import android.net.Uri;
-import android.util.Log;
 
-import net.skhu.firechat2.Item.RoomMemberLocationItem;
-import net.skhu.firechat2.ListenerInterface.OnUpdateUserSelfListener;
-import net.skhu.firechat2.Room.MemberLocation.RoomMemberLocationListActivity;
+import net.skhu.firechat2.ListenerInterface.RoomLocationListener.OnUpdateUserSelfListener;
 
 public class LocationUpdateThread implements Runnable {
     //View view;

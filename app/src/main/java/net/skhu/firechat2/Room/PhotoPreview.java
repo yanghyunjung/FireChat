@@ -58,8 +58,13 @@ public class PhotoPreview extends AppCompatActivity {
             //intent.putExtra("selectIndex", selectIndex);
             //setResult(Activity.RESULT_OK, intent);
 
-            String key = ((RoomActivity) RoomActivity.mContext).itemList.getKey(selectIndex);
-            ((RoomActivity) RoomActivity.mContext).firebaseDbService.removeFromServer(key);
+            //String key = ((RoomActivity) RoomActivity.mContext).itemList.getKey(selectIndex);
+            //((RoomActivity) RoomActivity.mContext).firebaseDbService.removeFromServer(key);
+
+            Intent intent = new Intent();
+            intent.putExtra("selectIndex", selectIndex);
+            setResult(Activity.RESULT_OK, intent);
+
             finish();
             return true;
         }
