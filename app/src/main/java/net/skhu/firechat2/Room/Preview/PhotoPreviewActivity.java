@@ -1,4 +1,6 @@
-package net.skhu.firechat2.Room;
+package net.skhu.firechat2.Room.Preview;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -9,17 +11,16 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import net.skhu.firechat2.R;
 
 import java.io.File;
 
-public class PhotoPreview extends AppCompatActivity {
+public class PhotoPreviewActivity extends AppCompatActivity {
     String photoFileName;
     ImageView imageViewPhoto;
     int selectIndex;
     //ItemEditDialogFragment itemEditDialogFragment; // 수정 대화상자 관리자
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

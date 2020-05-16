@@ -136,10 +136,12 @@ public class RoomChatRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerVi
 
             if(videoFile.exists()){
                 videoView.setVideoPath(videoFile.toString());
-                Toast.makeText(context, "비디오 파일 있음", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(context, "비디오 파일 있음", Toast.LENGTH_SHORT).show();
+                Log.v("pjw", "비디오 파일 있음");
             }
             else {
-                Toast.makeText(context, "비디오 파일 없음", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(context, "비디오 파일 없음", Toast.LENGTH_SHORT).show();
+                Log.v("pjw", "비디오 파일 없음");
             }
 
             this.videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {

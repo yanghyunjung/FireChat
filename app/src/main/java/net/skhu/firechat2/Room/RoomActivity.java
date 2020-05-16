@@ -52,12 +52,13 @@ import net.skhu.firechat2.FirebaseDBService.VideoUploadActivity;
 import net.skhu.firechat2.InitInformDialog;
 import net.skhu.firechat2.Item.Item;
 import net.skhu.firechat2.Item.RoomMemberLocationItem;
-import net.skhu.firechat2.Item.RoomMemberLocationItemList;
 import net.skhu.firechat2.R;
 import net.skhu.firechat2.Room.MemberLocation.GpsTracker;
 import net.skhu.firechat2.Room.MemberLocation.LocationFunc;
 import net.skhu.firechat2.Room.MemberLocation.RoomMemberLocationListActivity;
 import net.skhu.firechat2.Room.MemberLocation.RoomMemberLocationRecyclerViewAdapter;
+import net.skhu.firechat2.Room.Preview.PhotoPreviewActivity;
+import net.skhu.firechat2.Room.Preview.VideoPreviewActivity;
 import net.skhu.firechat2.UnCatchTaskService;
 
 import java.io.File;
@@ -309,7 +310,7 @@ public class RoomActivity extends AppCompatActivity {
         Item item = roomChatRecyclerViewAdapter.get(selectIndex);
 
         if (item.getHavePhoto()) {
-            Intent intent = new Intent(this, PhotoPreview.class);
+            Intent intent = new Intent(this, PhotoPreviewActivity.class);
             intent.putExtra("photoFileName", item.getPhotoFileName());
             intent.putExtra("selectIndex", selectIndex);
             //startActivity(intent);
@@ -411,7 +412,7 @@ public class RoomActivity extends AppCompatActivity {
                 FirebaseStorageService.videoDownload(this, getFilesDir(), downloadFileName,
                         () -> roomChatRecyclerViewAdapter.notifyDataSetChanged());
             } else {
-                Intent intent = new Intent(RoomActivity.this, VideoPreview.class);
+                Intent intent = new Intent(RoomActivity.this, VideoPreviewActivity.class);
                 intent.putExtra("videoFileName", item.getVideoFileName());
                 intent.putExtra("selectIndex", index);
                 startActivityForResult(intent, VIDEO_PREVIEW);

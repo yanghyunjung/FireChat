@@ -1,4 +1,8 @@
-package net.skhu.firechat2.Room;
+package net.skhu.firechat2.Room.Preview;
+
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.FileProvider;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -15,17 +19,12 @@ import android.view.WindowManager;
 import android.widget.Toast;
 import android.widget.VideoView;
 
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.FileProvider;
-
 import net.skhu.firechat2.BuildConfig;
 import net.skhu.firechat2.R;
 
 import java.io.File;
 
-public class VideoPreview extends AppCompatActivity {
-
+public class VideoPreviewActivity extends AppCompatActivity {
     //private static final int URL = ;
     String videoFileName;
     VideoView videoViewPreview;
@@ -45,7 +44,6 @@ public class VideoPreview extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_video_preview);
-
 
         currentPos=0;
 
