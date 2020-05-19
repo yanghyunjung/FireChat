@@ -30,9 +30,9 @@ public class LocationUpdateThread implements Runnable {
             }
 
             synchronized(this) {
-            if(shutdown) {
-                break;
-            }
+                if (shutdown) {
+                    break;
+                }
             }
 
             onUpdateUserSelfListener.onUpdateUserSelfListener();
