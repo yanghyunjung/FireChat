@@ -133,6 +133,8 @@ public class RoomActivity extends AppCompatActivity {
 
     LocationUpdateThread locationUpdateThread;
 
+   // boolean isGoToEditDialog = false;
+
     // 로그인 액티비티를 호출할 때, 사용할 요청 식별 번호(request code) 이다.
     static final int RC_SIGN_IN = 337;
 
@@ -284,6 +286,7 @@ public class RoomActivity extends AppCompatActivity {
             itemEditDialogFragment = new ItemEditDialogFragment(); // 대화상자 관리자 객체를 만든다
         selectedIndex = position; // 수정할 항목의 index를 대입한다.
         itemEditDialogFragment.show(getSupportFragmentManager(), "EditDialog"); // 화면에 대화상자 보이기
+
     }
 
     public void showRenameDialog() {

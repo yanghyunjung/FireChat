@@ -75,6 +75,8 @@ public class MainActivity extends AppCompatActivity {
 
     //String CanNotCreateRoomName = "RoomMemberLocationList1932847";//파이어 베이스 구조에서 RoomMemberLocationList1932847를 문자열로 쓸 수 없도록 해서, 일단 이 문자열로 방을 생성하지 못 하도록 했다.
 
+    boolean isGoToRoom = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -148,15 +150,19 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void intentRoom(int selectIndex){
-        //방으로 들어가는 Intent
-        Intent intent = new Intent(this, RoomActivity.class);
-        intent.putExtra("userName", userName);
-        intent.putExtra("userEmail", userEmail);
-        intent.putExtra("roomKey", roomRecyclerViewAdapter.getKey(selectIndex));
-        intent.putExtra("roomName", roomRecyclerViewAdapter.get(selectIndex).getRoomName());
-        intent.putExtra("roomMemberLocationKey", roomRecyclerViewAdapter.get(selectIndex).getRoomMemberLocationKey());
+        if (isGoToRoom == false) {
+            isGoToRoom = true;
 
-        startActivityForResult(intent, ROOM);
+            //방으로 들어가는 Intent
+            Intent intent = new Intent(this, RoomActivity.class);
+            intent.putExtra("userName", userName);
+            intent.putExtra("userEmail", userEmail);
+            intent.putExtra("roomKey", roomRecyclerViewAdapter.getKey(selectIndex));
+            intent.putExtra("roomName", roomRecyclerViewAdapter.get(selectIndex).getRoomName());
+            intent.putExtra("roomMemberLocationKey", roomRecyclerViewAdapter.get(selectIndex).getRoomMemberLocationKey());
+
+            startActivityForResult(intent, ROOM);
+        }
     }
 
     public void onAddedRoomListener(String key, RoomItem roomItem) {
@@ -382,6 +388,8 @@ public class MainActivity extends AppCompatActivity {
             if (index >=0 ) {
                 firebaseDbServiceForRoomMemberList.removeFromServer(roomMemberItemList.getKey(index));
             }*/
+
+            isGoToRoom = false;
         }
 
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT); //세로모드 고정

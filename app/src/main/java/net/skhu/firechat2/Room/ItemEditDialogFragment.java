@@ -72,6 +72,7 @@ public class ItemEditDialogFragment extends DialogFragment {
 
         builder.setNegativeButton("취소", null); // 대화상자에 '취소' 버튼을 추가하기
         AlertDialog dialog = builder.create(); // 대화상자 객체 생성하기
+
         return dialog; // 생성된 대화상자 객체 리턴
     }
 }
