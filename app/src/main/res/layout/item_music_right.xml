@@ -23,14 +23,14 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="180sp"
-        android:layout_height="180sp"
+        android:layout_width="120sp"
+        android:layout_height="120sp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewNameInMusic"
-        app:srcCompat="@drawable/music_icon"/>
+        app:srcCompat="@drawable/music2" />
 
     <TextView
         android:id="@+id/textViewTimeInMusic"
