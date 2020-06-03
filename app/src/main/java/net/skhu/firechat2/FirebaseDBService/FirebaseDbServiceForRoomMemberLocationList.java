@@ -72,7 +72,7 @@ public class FirebaseDbServiceForRoomMemberLocationList implements ChildEventLis
             RoomMemberLocationList = "RoomMemberLocationList1";
         }*/
 
-        databaseReference = FirebaseDatabase.getInstance().getReference("myServerData04");
+        databaseReference = FirebaseDatabase.getInstance().getReference(FireBaseReference.FIREBASE_REAL_TIME_DB_REF);
         //RoomMemberLocationListKey = databaseReference.child(roomKey).push().getKey();
 
         databaseReference.child(roomKey).child(roomMemberLocationKey).child(RoomMemberLocationList).addChildEventListener(this);

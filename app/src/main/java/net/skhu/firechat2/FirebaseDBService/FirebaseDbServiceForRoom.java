@@ -46,7 +46,7 @@ public class FirebaseDbServiceForRoom implements ChildEventListener {
        // this.roomItemList = roomItemList; // RecyclerView에 표시할 데이터 목록
         this.userId = userId;
         //this.checkedFreeScroll = checkedFreeScroll;
-        databaseReference = FirebaseDatabase.getInstance().getReference("myServerData04");
+        databaseReference = FirebaseDatabase.getInstance().getReference(FireBaseReference.FIREBASE_REAL_TIME_DB_REF);
         databaseReference.addChildEventListener(this);
         this.context = context;
 

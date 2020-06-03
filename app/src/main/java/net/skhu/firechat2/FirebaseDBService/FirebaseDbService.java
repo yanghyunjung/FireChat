@@ -50,7 +50,7 @@ public class FirebaseDbService implements ChildEventListener {
         this.userId = userId;
         //this.recyclerView = recyclerView;
         //this.checkedFreeScroll = checkedFreeScroll;
-        databaseReference = FirebaseDatabase.getInstance().getReference("myServerData04");
+        databaseReference = FirebaseDatabase.getInstance().getReference(FireBaseReference.FIREBASE_REAL_TIME_DB_REF);
         databaseReference.child(roomKey).child(roomName).addChildEventListener(this);
         this.context = context;
         this.roomKey = roomKey;

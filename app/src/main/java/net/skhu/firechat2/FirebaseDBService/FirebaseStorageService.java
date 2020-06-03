@@ -22,7 +22,7 @@ public class FirebaseStorageService {
         //downloadFileName = itemList.get(selectIndex).getVideoFileName();
 
         com.google.firebase.storage.FirebaseStorage storage = com.google.firebase.storage.FirebaseStorage.getInstance();
-        StorageReference storageRef = storage.getReferenceFromUrl("gs://firechat-51553.appspot.com").child("videos/" + downloadFileName);
+        StorageReference storageRef = storage.getReferenceFromUrl(FireBaseReference.FIREBASE_STORAGE_REF).child("videos/" + downloadFileName);
 
         try{
 
@@ -90,7 +90,7 @@ public class FirebaseStorageService {
         //downloadFileName = itemList.get(selectIndex).getVideoFileName();
 
         com.google.firebase.storage.FirebaseStorage storage = com.google.firebase.storage.FirebaseStorage.getInstance();
-        StorageReference storageRef = storage.getReferenceFromUrl("gs://firechat-51553.appspot.com").child("audio/" + downloadFileName);
+        StorageReference storageRef = storage.getReferenceFromUrl(FireBaseReference.FIREBASE_STORAGE_REF).child("audio/" + downloadFileName);
 
         try{
 
@@ -158,7 +158,7 @@ public class FirebaseStorageService {
         //downloadFileName = itemList.get(selectIndex).getVideoFileName();
 
         com.google.firebase.storage.FirebaseStorage storage = com.google.firebase.storage.FirebaseStorage.getInstance();
-        StorageReference storageRef = storage.getReferenceFromUrl("gs://firechat-51553.appspot.com").child("images/" + downloadFileName);
+        StorageReference storageRef = storage.getReferenceFromUrl(FireBaseReference.FIREBASE_STORAGE_REF).child("images/" + downloadFileName);
 
         try{
 

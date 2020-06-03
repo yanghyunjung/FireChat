@@ -203,7 +203,7 @@ public class VideoUploadActivity extends AppCompatActivity {
             Date now = new Date();
             filename = formatter.format(now) + mediaType;
             //storage 주소와 폴더 파일명을 지정해 준다.
-            StorageReference storageRef = storage.getReferenceFromUrl("gs://firechat-51553.appspot.com").child("videos/" + filename);
+            StorageReference storageRef = storage.getReferenceFromUrl(FireBaseReference.FIREBASE_STORAGE_REF).child("videos/" + filename);
 
             //올라가거라...
             storageRef.putFile(filePath)
