@@ -66,11 +66,12 @@ public class VideoPreviewActivity extends AppCompatActivity {
             videoViewPreview.setVideoPath(videoFile.toString());
         }
 
-        Intent intent = new Intent(Intent.ACTION_VIEW);
-        Uri uri = FileProvider.getUriForFile(getApplicationContext(), BuildConfig.APPLICATION_ID, videoFile);
-        intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
-        intent.setDataAndType(uri, "video/*");
-        startActivity(intent);
+        intentVideo();
+//        Intent intent = new Intent(Intent.ACTION_VIEW);
+//        Uri uri = FileProvider.getUriForFile(getApplicationContext(), BuildConfig.APPLICATION_ID, videoFile);
+//        intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
+//        intent.setDataAndType(uri, "video/*");
+//        startActivity(intent);
 
 
 
@@ -111,11 +112,12 @@ public class VideoPreviewActivity extends AppCompatActivity {
         videoViewPreview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Intent.ACTION_VIEW);
-                Uri uri = FileProvider.getUriForFile(getApplicationContext(), BuildConfig.APPLICATION_ID, videoFile);
-                intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
-                intent.setDataAndType(uri, "video/*");
-                startActivity(intent);
+                intentVideo();
+//                Intent intent = new Intent(Intent.ACTION_VIEW);
+//                Uri uri = FileProvider.getUriForFile(getApplicationContext(), BuildConfig.APPLICATION_ID, videoFile);
+//                intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
+//                intent.setDataAndType(uri, "video/*");
+//                startActivity(intent);
             }
         });
 
@@ -232,5 +234,13 @@ public class VideoPreviewActivity extends AppCompatActivity {
 
         cursor.close();
         return Uri.parse(photoUri.toString() + "/" + photoId);
+    }
+
+    public void intentVideo(){
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        Uri uri = FileProvider.getUriForFile(getApplicationContext(), BuildConfig.APPLICATION_ID, videoFile);
+        intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
+        intent.setDataAndType(uri, "video/*");
+        startActivity(intent);
     }
 }
