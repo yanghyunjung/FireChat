@@ -39,5 +39,4 @@
     <string name="action_showRoomMember">방 멤버 보기</string>
     <string name="action_showMemberLocation">멤버 위치 보기</string>
     <string name="action_showMidpoint">중간지점 보기</string>
-    <string name="close">취소</string>
 </resources>

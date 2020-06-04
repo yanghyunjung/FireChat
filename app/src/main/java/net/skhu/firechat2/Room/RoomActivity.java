@@ -624,7 +624,7 @@ public class RoomActivity extends AppCompatActivity {
                             removeAll();
                         }
                     });
-            builder.setNegativeButton(R.string.close, null);
+            builder.setNegativeButton(R.string.cancel, null);
             AlertDialog dialog = builder.create();
             dialog.show();
             //firebaseDbService.removeAllFromServer();
@@ -657,7 +657,7 @@ public class RoomActivity extends AppCompatActivity {
                     finish();
                 }
             });
-            builder.setNegativeButton(R.string.close, null);
+            builder.setNegativeButton(R.string.cancel, null);
             AlertDialog dialog = builder.create();
             dialog.show();
 
