@@ -2,14 +2,12 @@ package net.skhu.firechat2;
 
 import android.Manifest;
 import android.app.AlertDialog;
-import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.location.LocationManager;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
@@ -30,12 +28,8 @@ import com.firebase.ui.auth.IdpResponse;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-import net.skhu.firechat2.FirebaseDBService.FirebaseDbServiceForRoom;
+import net.skhu.firechat2.FirebaseDBService.RealTimeDB.FirebaseDbServiceForRoom;
 import net.skhu.firechat2.Item.RoomItem;
-import net.skhu.firechat2.Item.RoomItemList;
-import net.skhu.firechat2.Item.RoomMemberItem;
-import net.skhu.firechat2.Item.RoomMemberItemList;
-import net.skhu.firechat2.Room.ItemEditDialogFragment;
 import net.skhu.firechat2.Room.RoomActivity;
 
 import java.util.Arrays;

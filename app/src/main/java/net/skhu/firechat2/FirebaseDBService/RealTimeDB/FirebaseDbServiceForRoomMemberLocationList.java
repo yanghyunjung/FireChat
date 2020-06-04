@@ -1,4 +1,4 @@
-package net.skhu.firechat2.FirebaseDBService;
+package net.skhu.firechat2.FirebaseDBService.RealTimeDB;
 
 import android.content.Context;
 import android.util.Log;
@@ -9,6 +9,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import net.skhu.firechat2.FirebaseDBService.FireBaseReference;
 import net.skhu.firechat2.Item.RoomMemberLocationItem;
 import net.skhu.firechat2.ListenerInterface.RoomLocationListener.Firebase.OnChildAddedLocationListener;
 import net.skhu.firechat2.ListenerInterface.RoomLocationListener.Firebase.OnChildRemovedLocationListener;

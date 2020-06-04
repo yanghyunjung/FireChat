@@ -18,12 +18,11 @@
         android:theme="@style/AppTheme">
         <activity android:name=".Room.Preview.VideoPreviewActivity"></activity>
         <activity android:name=".Room.Preview.PhotoPreviewActivity" />
-        <activity android:name=".FirebaseDBService.PhotoUploadActivity" />
+        <activity android:name=".Room.UploadActivity.PhotoUploadActivity" />
         <activity android:name=".Room.MemberLocation.RoomMemberLocationListActivity" />
-        <activity android:name=".FirebaseDBService.MusicUploadActivity" />
+        <activity android:name=".Room.UploadActivity.MusicUploadActivity" />
         <activity android:name=".Room.RoomActivity" />
-        <activity android:name=".FirebaseDBService.VideoUploadActivity" />
-        <activity android:name=".FirebaseDBService.FileUploadActivity" />
+        <activity android:name=".Room.UploadActivity.VideoUploadActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
