@@ -39,4 +39,6 @@
     <string name="action_showRoomMember">방 멤버 보기</string>
     <string name="action_showMemberLocation">멤버 위치 보기</string>
     <string name="action_showMidpoint">중간지점 보기</string>
+    <string name="delete_question">정말 삭제할 건가요?</string>
+    <string name="close_question">정말 닫을 건가요?</string>
 </resources>

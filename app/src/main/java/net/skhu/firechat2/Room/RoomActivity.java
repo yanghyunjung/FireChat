@@ -616,7 +616,8 @@ public class RoomActivity extends AppCompatActivity {
             return true;
         } else if (id == R.id.action_removeAll) {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setMessage(R.string.action_removeAll);
+            builder.setTitle(R.string.action_removeAll);
+            builder.setMessage(R.string.delete_question);
             builder.setPositiveButton(R.string.delete, new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int index) {
@@ -644,7 +645,8 @@ public class RoomActivity extends AppCompatActivity {
         else if (id == R.id.action_closeRoom) {
             //firebaseDbService.removeAllFromServer();
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setMessage(R.string.action_closeRoom);
+            builder.setTitle(R.string.action_closeRoom);
+            builder.setMessage(R.string.close_question);
             builder.setPositiveButton(R.string.action_closeRoom, new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int index) {

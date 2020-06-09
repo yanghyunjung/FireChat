@@ -3,6 +3,8 @@ package net.skhu.firechat2.Room.Preview;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -62,11 +64,28 @@ public class PhotoPreviewActivity extends AppCompatActivity {
             //String key = ((RoomActivity) RoomActivity.mContext).itemList.getKey(selectIndex);
             //((RoomActivity) RoomActivity.mContext).firebaseDbService.removeFromServer(key);
 
-            Intent intent = new Intent();
-            intent.putExtra("selectIndex", selectIndex);
-            setResult(Activity.RESULT_OK, intent);
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setMessage(R.string.delete_question);
+            builder.setPositiveButton(R.string.delete, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int index) {
+                    // 삭제 작업 실행
+                    Intent intent = new Intent();
+                    intent.putExtra("selectIndex", selectIndex);
+                    setResult(Activity.RESULT_OK, intent);
 
-            finish();
+                    finish();
+                }
+            });
+            builder.setNegativeButton(R.string.cancel, null);
+            AlertDialog dialog = builder.create();
+            dialog.show();
+
+//            Intent intent = new Intent();
+//            intent.putExtra("selectIndex", selectIndex);
+//            setResult(Activity.RESULT_OK, intent);
+//
+//            finish();
             return true;
         }
         else if (id == R.id.action_exit) {

@@ -1,45 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-    <item android:id="@+id/scroll"
+    <item
+        android:id="@+id/scroll"
         android:title="@string/scroll"
-        app:showAsAction="ifRoom" />
+        app:showAsAction="never" />
     <item
         android:id="@+id/action_removeAll"
         android:title="@string/action_removeAll"
-        app:showAsAction="always" />
+        app:showAsAction="never" />
 
     <item
         android:id="@+id/action_closeRoom"
         android:title="@string/action_closeRoom"
-        app:showAsAction="ifRoom" />
+        app:showAsAction="never" />
 
     <item
         android:id="@+id/action_rename"
         android:title="@string/action_rename"
-        app:showAsAction="ifRoom" />
+        app:showAsAction="never" />
     <item
         android:id="@+id/action_photoUpload"
+        android:icon="@drawable/photo2"
         android:title="@string/action_photoUpload"
-        app:showAsAction="ifRoom" />
+        app:showAsAction="always" />
 
     <item
         android:id="@+id/action_videoUpload"
+        android:icon="@drawable/video2"
         android:title="@string/action_videoUpload"
-        app:showAsAction="ifRoom" />
+        app:showAsAction="always" />
 
     <item
         android:id="@+id/action_musicUpload"
+        android:icon="@drawable/music2"
         android:title="@string/action_musicUpload"
-        app:showAsAction="ifRoom" />
+        app:showAsAction="always" />
 
     <item
         android:id="@+id/action_showMemberLocation"
+        android:icon="@drawable/location2"
         android:title="@string/action_showMemberLocation"
-        app:showAsAction="ifRoom" />
+        app:showAsAction="always" />
 
     <item
         android:id="@+id/action_showMidpoint"
         android:title="@string/action_showMidpoint"
-        app:showAsAction="ifRoom" />
+        app:showAsAction="never" />
 </menu>

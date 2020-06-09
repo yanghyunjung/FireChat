@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.FileProvider;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.database.Cursor;
@@ -174,11 +176,28 @@ public class VideoPreviewActivity extends AppCompatActivity {
             //String key = ((RoomActivity) RoomActivity.mContext).itemList.getKey(selectIndex);
             //((RoomActivity) RoomActivity.mContext).firebaseDbService.removeFromServer(key);
 
-            Intent intent = new Intent();
-            intent.putExtra("selectIndex", selectIndex);
-            setResult(Activity.RESULT_OK, intent);
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setMessage(R.string.delete_question);
+            builder.setPositiveButton(R.string.delete, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int index) {
+                    // 삭제 작업 실행
+                    Intent intent = new Intent();
+                    intent.putExtra("selectIndex", selectIndex);
+                    setResult(Activity.RESULT_OK, intent);
 
-            this.finish();
+                    finish();
+                }
+            });
+            builder.setNegativeButton(R.string.cancel, null);
+            AlertDialog dialog = builder.create();
+            dialog.show();
+
+//            Intent intent = new Intent();
+//            intent.putExtra("selectIndex", selectIndex);
+//            setResult(Activity.RESULT_OK, intent);
+//
+//            this.finish();
             return true;
         }
         else if (id == R.id.action_horizontalMode){
