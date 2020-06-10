@@ -102,6 +102,7 @@ public class RoomActivity extends AppCompatActivity {
     String downloadVideoFileName;
 
     String roomKey;
+    String roomNameKey;
     String roomName;
     String roomMemberLocationKey;
 
@@ -151,6 +152,7 @@ public class RoomActivity extends AppCompatActivity {
         if (extras != null) {
             roomKey = extras.getString("roomKey");
             userName = extras.getString("userName");
+            roomNameKey = extras.getString("roomNameKey");
             roomName = extras.getString("roomName");
             userEmail = extras.getString("userEmail");
             roomMemberLocationKey = extras.getString("roomMemberLocationKey");
@@ -209,7 +211,7 @@ public class RoomActivity extends AppCompatActivity {
         // firebase DB 서비스 생성
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         String userId = (user != null) ? user.getUid() : "anonymous";
-        firebaseDbService = new FirebaseDbService(this, userId, roomKey, roomName,
+        firebaseDbService = new FirebaseDbService(this, userId, roomKey, roomNameKey, roomName,
                 (key, item)->onAddedChatListener(key, item),
                 (key, item)->onChangedChatListener(key, item),
                 (key)->onRemovedChatListener(key));

@@ -152,6 +152,7 @@ public class MainActivity extends AppCompatActivity {
             intent.putExtra("userName", userName);
             intent.putExtra("userEmail", userEmail);
             intent.putExtra("roomKey", roomRecyclerViewAdapter.getKey(selectIndex));
+            intent.putExtra("roomNameKey", roomRecyclerViewAdapter.get(selectIndex).getRoomNameKey());
             intent.putExtra("roomName", roomRecyclerViewAdapter.get(selectIndex).getRoomName());
             intent.putExtra("roomMemberLocationKey", roomRecyclerViewAdapter.get(selectIndex).getRoomMemberLocationKey());
 

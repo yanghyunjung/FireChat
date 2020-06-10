@@ -32,6 +32,7 @@ public class FirebaseDbService implements ChildEventListener {
     File path;
 
     String roomKey;
+    String roomNameKey;
     String roomName;
 
     int selectIndex;
@@ -44,7 +45,7 @@ public class FirebaseDbService implements ChildEventListener {
     OnChildChangedRoomChatListener onChildChangedRoomChatListener;
     OnChildRemovedRoomChatListener onChildRemovedRoomChatListener;
 
-    public FirebaseDbService(Context context, String userId, String roomKey, String roomName, OnChildAddedRoomChatListener onChildAddedRoomChatListener,
+    public FirebaseDbService(Context context, String userId, String roomKey, String roomNameKey,String roomName,OnChildAddedRoomChatListener onChildAddedRoomChatListener,
                              OnChildChangedRoomChatListener onChildChangedRoomChatListener, OnChildRemovedRoomChatListener onChildRemovedRoomChatListener) {
         //this.roomChatRecyclerViewAdapter = roomChatRecyclerViewAdapter;
         //this.itemList = itemList; // RecyclerView에 표시할 데이터 목록
@@ -52,9 +53,10 @@ public class FirebaseDbService implements ChildEventListener {
         //this.recyclerView = recyclerView;
         //this.checkedFreeScroll = checkedFreeScroll;
         databaseReference = FirebaseDatabase.getInstance().getReference(FireBaseReference.FIREBASE_REAL_TIME_DB_REF);
-        databaseReference.child(roomKey).child(roomName).addChildEventListener(this);
+        databaseReference.child(roomKey).child(roomNameKey).child(roomName).addChildEventListener(this);
         this.context = context;
         this.roomKey = roomKey;
+        this.roomNameKey = roomNameKey;
         this.roomName = roomName;
 
         this.onChildAddedRoomChatListener = onChildAddedRoomChatListener;
@@ -65,16 +67,16 @@ public class FirebaseDbService implements ChildEventListener {
     //데이터 베이스에 추가할 때
     public void addIntoServer(Item item) {
         // 새 기본 키(primary key)를 생성한다.
-        String key = databaseReference.child(roomKey).child(roomName).push().getKey();
+        String key = databaseReference.child(roomKey).child(roomNameKey).child(roomName).push().getKey();
         // 새 기본 키로 데이터를 등록한다.
         // 서버에서 key 값으로 dataItem 값이 새로 등록된다.
-        databaseReference.child(roomKey).child(roomName).child(key).setValue(item);
+        databaseReference.child(roomKey).child(roomNameKey).child(roomName).child(key).setValue(item);
     }
 
     public void removeFromServer(String key) {
         // 서버에서 데이터를 delete 한다.
         // 서버에서 key 값으로 등록된 데이터가 제거된다.
-        databaseReference.child(roomKey).child(roomName).child(key).removeValue();
+        databaseReference.child(roomKey).child(roomNameKey).child(roomName).child(key).removeValue();
 
         //Item item = roomChatRecyclerViewAdapter.get(roomChatRecyclerViewAdapter.findIndex(key));
 
@@ -98,7 +100,7 @@ public class FirebaseDbService implements ChildEventListener {
         // 서버에서 데이터를 update 한다.
         //String key = roomChatRecyclerViewAdapter.getKey(index);
        // Item item = roomChatRecyclerViewAdapter.get(index);
-        databaseReference.child(roomKey).child(roomName).child(key).setValue(item);
+        databaseReference.child(roomKey).child(roomNameKey).child(roomName).child(key).setValue(item);
     }
 
     @Override
