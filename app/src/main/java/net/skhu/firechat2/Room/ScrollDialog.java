@@ -37,16 +37,17 @@ public class ScrollDialog extends DialogFragment {
             @Override
             // 대화상자의 '확인' 버튼이 클릭되면 실행되는 메소드
             public void onClick(DialogInterface dialog, int which) {
-                if (checkBoxFreeScroll.isChecked()) {
-                    activity.checkedFreeScroll = true;
-                    activity.checkBoxFreeScroll.setChecked(true);
-                    Toast.makeText(activity.getApplicationContext(), "자유 스크롤이 설정되었습니다.", Toast.LENGTH_SHORT).show();
-                }
-                else{
-                    activity.checkedFreeScroll = false;
-                    activity.checkBoxFreeScroll.setChecked(false);
-                    Toast.makeText(activity.getApplicationContext(), "자유 스크롤이 해제되었습니다.", Toast.LENGTH_SHORT).show();
-                }
+                activity.setScroll(checkBoxFreeScroll.isChecked());
+//                if (checkBoxFreeScroll.isChecked()) {
+//                    activity.checkedFreeScroll = true;
+//                    activity.checkBoxFreeScroll.setChecked(true);
+//                    Toast.makeText(activity.getApplicationContext(), "자유 스크롤이 설정되었습니다.", Toast.LENGTH_SHORT).show();
+//                }
+//                else{
+//                    activity.checkedFreeScroll = false;
+//                    activity.checkBoxFreeScroll.setChecked(false);
+//                    Toast.makeText(activity.getApplicationContext(), "자유 스크롤이 해제되었습니다.", Toast.LENGTH_SHORT).show();
+//                }
             } // onClick 메소드의 끝
         });
 
