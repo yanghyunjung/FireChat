@@ -13,6 +13,7 @@
 
     <item
         android:id="@+id/action_create_room"
+        android:icon="@drawable/ic_forum_black_48dp"
         android:title="@string/action_create_room"
         app:showAsAction="always" />
 </menu>
