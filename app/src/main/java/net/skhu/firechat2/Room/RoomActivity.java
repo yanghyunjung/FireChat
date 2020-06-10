@@ -84,8 +84,8 @@ public class RoomActivity extends AppCompatActivity {
 
     FirebaseDbService firebaseDbService;
     ItemEditDialogFragment itemEditDialogFragment; // 수정 대화상자 관리자
-    RenameDiolog renameDiolog;//이름 변경 대화상자 관리자
-    ScrollDiolog scrollDiolog;
+    RenameDialog renameDialog;//이름 변경 대화상자 관리자
+    ScrollDialog scrollDialog;
     MusicPreviewDialog musicPreviewDialog;
 
 
@@ -131,6 +131,7 @@ public class RoomActivity extends AppCompatActivity {
     private GpsTracker gpsTracker;
 
     LocationUpdateThread locationUpdateThread;
+
 
    // boolean isGoToEditDialog = false;
 
@@ -289,17 +290,17 @@ public class RoomActivity extends AppCompatActivity {
     }
 
     public void showRenameDialog() {
-        if (renameDiolog == null) {// 대화상자 관리자 객체를 아직 만들지 않았다면
-            renameDiolog = new RenameDiolog(); // 대화상자 관리자 객체를 만든다
+        if (renameDialog == null) {// 대화상자 관리자 객체를 아직 만들지 않았다면
+            renameDialog = new RenameDialog(); // 대화상자 관리자 객체를 만든다
         }
-        renameDiolog.show(getSupportFragmentManager(), "RenameDialog"); // 화면에 대화상자 보이기
+        renameDialog.show(getSupportFragmentManager(), "RenameDialog"); // 화면에 대화상자 보이기
     }
 
     public void showScrollDialog() {
-        if (scrollDiolog == null) {// 대화상자 관리자 객체를 아직 만들지 않았다면
-            scrollDiolog = new ScrollDiolog(); // 대화상자 관리자 객체를 만든다
+        if (scrollDialog == null) {// 대화상자 관리자 객체를 아직 만들지 않았다면
+            scrollDialog = new ScrollDialog(); // 대화상자 관리자 객체를 만든다
         }
-        scrollDiolog.show(getSupportFragmentManager(), "ScrollDialog"); // 화면에 대화상자 보이기
+        scrollDialog.show(getSupportFragmentManager(), "ScrollDialog"); // 화면에 대화상자 보이기
     }
 
     public void showMusicPreviewDialog() {
@@ -597,12 +598,40 @@ public class RoomActivity extends AppCompatActivity {
         }
     }
 
+    public void changeUserName(String changeUserName){
+        userName = changeUserName;
+        int userIndex = roomMemberLocationRecyclerViewAdapter.findIndexByEmail(userEmail);
+
+        gpsTracker = new GpsTracker(RoomActivity.this);
+        double latitude = gpsTracker.getLatitude();
+        double longitude = gpsTracker.getLongitude();
+
+        RoomMemberLocationItem roomMemberLocationItem = new RoomMemberLocationItem(userName, userEmail, latitude, longitude);
+        firebaseDbServiceForRoomMemberLocationList.updateInServer(roomMemberLocationRecyclerViewAdapter.getKey(userIndex), roomMemberLocationItem);
+
+        //firebaseDbServiceForRoomMemberLocationList()
+    }
+
+    public void setScroll(boolean checked){
+        if (checked) {
+            checkedFreeScroll = true;
+            checkBoxFreeScroll.setChecked(true);
+            Toast.makeText(getApplicationContext(), "자유 스크롤이 설정되었습니다.", Toast.LENGTH_SHORT).show();
+        }
+        else{
+            checkedFreeScroll = false;
+            checkBoxFreeScroll.setChecked(false);
+            Toast.makeText(getApplicationContext(), "자유 스크롤이 해제되었습니다.", Toast.LENGTH_SHORT).show();
+        }
+    }
+
     //////////////////////////////////////////////////////////////////
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_room, menu); // 메뉴 생성
 
+        getSupportActionBar().setTitle(roomName);
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
         return true;

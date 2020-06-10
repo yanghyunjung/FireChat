@@ -130,6 +130,10 @@ public class RoomMemberLocationRecyclerViewAdapter extends RecyclerView.Adapter<
         return roomMemberLocationItemList.getIteratorKeys();
     }
 
+    public int findIndexByEmail(String email){
+        return roomMemberLocationItemList.findIndexByEmail(email);
+    }
+
     @Override
     public int getItemCount() {
         return roomMemberLocationItemList.size();

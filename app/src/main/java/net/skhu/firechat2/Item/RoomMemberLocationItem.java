@@ -17,6 +17,14 @@ public class RoomMemberLocationItem implements Serializable {//Serializableë§ˆí‚
         locationUpdate = false;
     }
 
+    public RoomMemberLocationItem(String userName, String userEmail, double latitude, double longitude){
+        this.userName = userName;
+        this.userEmail = userEmail;
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.locationUpdate = false;
+    }
+
     public boolean isLocationUpdate() {
         return locationUpdate;
     }

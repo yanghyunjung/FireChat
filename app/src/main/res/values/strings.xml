@@ -41,4 +41,6 @@
     <string name="action_showMidpoint">중간지점 보기</string>
     <string name="delete_question">정말 삭제할 건가요?</string>
     <string name="close_question">정말 닫을 건가요?</string>
+    <string name="videoPreview">비디오 미리보기</string>
+    <string name="photoPreview">사진 전체 화면</string>
 </resources>

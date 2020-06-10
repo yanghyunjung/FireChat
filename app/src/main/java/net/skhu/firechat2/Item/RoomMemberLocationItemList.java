@@ -57,4 +57,14 @@ public class RoomMemberLocationItemList implements Serializable {//Serializableë
     public Iterator<String> getIteratorKeys(){
         return keys.iterator();
     }
+
+    public int findIndexByEmail(String email){
+        for (int i = 0; i < roomMemberLocationItems.size(); ++i) {
+            if (roomMemberLocationItems.get(i).getUserEmail().equals(email)) {
+                return i;
+            }
+        }
+
+        return -1;
+    }
 }
