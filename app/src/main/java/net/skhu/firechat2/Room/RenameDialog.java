@@ -11,7 +11,7 @@ import androidx.fragment.app.DialogFragment;
 
 import net.skhu.firechat2.R;
 
-public class RenameDiolog extends DialogFragment {
+public class RenameDialog extends DialogFragment {
 
     @Override
     // 수정 대화상자를 만드는 메소드.  이 메소드는 대화상자를 새로 만들어야 할 때에만 호출된다.
@@ -37,8 +37,8 @@ public class RenameDiolog extends DialogFragment {
             // 대화상자의 '저장' 버튼이 클릭되면 실행되는 메소드
             public void onClick(DialogInterface dialog, int which) {
                 CharSequence rename = edit_rename.getText();
-
-                activity.userName = rename.toString();
+                activity.changeUserName(rename.toString());
+                //activity.userName = rename.toString();
             } // onClick 메소드의 끝
         });
         // 대화상자에 '저장' 버튼을 추가하는 코드의 끝

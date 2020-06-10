@@ -84,7 +84,7 @@ public class RoomMemberLocationRecyclerViewAdapter extends RecyclerView.Adapter<
 
     final int ROOM_MEMBER_LOCATION=0;
 
-    public RoomMemberLocationRecyclerViewAdapter(Context context,OnClickRoomMemberLocationListener onClickRoomMemberLocationListener) {
+    public RoomMemberLocationRecyclerViewAdapter(Context context, OnClickRoomMemberLocationListener onClickRoomMemberLocationListener) {
         this.layoutInflater = LayoutInflater.from(context);
         this.context = context;
         this.roomMemberLocationItemList = new RoomMemberLocationItemList();
@@ -128,6 +128,10 @@ public class RoomMemberLocationRecyclerViewAdapter extends RecyclerView.Adapter<
 
     public Iterator<String> getIteratorKeys(){
         return roomMemberLocationItemList.getIteratorKeys();
+    }
+
+    public int findIndexByEmail(String email){
+        return roomMemberLocationItemList.findIndexByEmail(email);
     }
 
     @Override

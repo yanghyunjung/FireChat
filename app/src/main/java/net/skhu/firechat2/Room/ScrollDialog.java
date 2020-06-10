@@ -12,7 +12,7 @@ import androidx.fragment.app.DialogFragment;
 
 import net.skhu.firechat2.R;
 
-public class ScrollDiolog extends DialogFragment {
+public class ScrollDialog extends DialogFragment {
 
     //스크롤 설정 다이얼로그
     @Override

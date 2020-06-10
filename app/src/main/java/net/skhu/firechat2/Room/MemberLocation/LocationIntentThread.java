@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.util.Log;
-import android.view.View;
 
 import net.skhu.firechat2.Item.RoomMemberLocationItem;
 
