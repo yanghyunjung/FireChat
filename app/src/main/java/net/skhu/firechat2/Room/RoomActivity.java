@@ -55,6 +55,7 @@ import net.skhu.firechat2.Room.MemberLocation.RoomMemberLocationListActivity;
 import net.skhu.firechat2.Room.MemberLocation.RoomMemberLocationRecyclerViewAdapter;
 import net.skhu.firechat2.Room.Preview.PhotoPreviewActivity;
 import net.skhu.firechat2.Room.Preview.VideoPreviewActivity;
+import net.skhu.firechat2.Room.Thread.CloseRoomThread;
 import net.skhu.firechat2.Room.Thread.LocationUpdateThread;
 import net.skhu.firechat2.Room.Thread.RemoveFileThread;
 import net.skhu.firechat2.Room.UploadActivity.MusicUploadActivity;
@@ -132,7 +133,9 @@ public class RoomActivity extends AppCompatActivity {
     private GpsTracker gpsTracker;
 
     LocationUpdateThread locationUpdateThread;
+    CloseRoomThread closeRoomThread;//방 닫을 때, 제대로 처리 안하고, Activity 닫아서 Thread 로 전체삭제 처리 끝내고 방 닫도록 해주었습니다.
 
+    boolean closedRoom = false;
 
    // boolean isGoToEditDialog = false;
 
@@ -564,6 +567,10 @@ public class RoomActivity extends AppCompatActivity {
 
         int index = roomChatRecyclerViewAdapter.remove(key); // itemList에서 그 데이터 항목을 삭제한다.
         roomChatRecyclerViewAdapter.notifyItemRemoved(index); // RecyclerView를 다시 그린다.
+
+        if (closedRoom == true && roomChatRecyclerViewAdapter.size() == 0){
+            closeRoomThread.cancel();
+        }
     }
 
     public void updateLocationUserSelf(){
@@ -684,10 +691,16 @@ public class RoomActivity extends AppCompatActivity {
                     // 삭제 작업 실행
                     removeAll();
 
-                    Intent intent = new Intent();
-                    intent.putExtra("roomKey", roomKey);
-                    setResult(Activity.RESULT_OK, intent);
-                    finish();
+                    closedRoom = true;
+
+                    closeRoomThread = new CloseRoomThread(()->closeRoom());
+                    Thread t = new Thread(closeRoomThread,"closeRoomThread");
+                    t.start();
+
+//                    Intent intent = new Intent();
+//                    intent.putExtra("roomKey", roomKey);
+//                    setResult(Activity.RESULT_OK, intent);
+//                    finish();
                 }
             });
             builder.setNegativeButton(R.string.cancel, null);
@@ -739,6 +752,13 @@ public class RoomActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(menuItem);
+    }
+
+    void closeRoom(){
+        Intent intent = new Intent();
+        intent.putExtra("roomKey", roomKey);
+        setResult(Activity.RESULT_OK, intent);
+        finish();
     }
 
 
