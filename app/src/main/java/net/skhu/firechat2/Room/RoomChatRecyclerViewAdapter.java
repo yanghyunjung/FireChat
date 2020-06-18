@@ -107,6 +107,8 @@ public class RoomChatRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerVi
         }
     }
 
+    //ViewHolderVideo 자기 자신이 리스너가 되는 것입니다. implements View.OnClickListener,  MediaPlayer.OnPreparedListener,
+    //            MediaPlayer.OnErrorListener
     class ViewHolderVideo extends RecyclerView.ViewHolder  implements View.OnClickListener,  MediaPlayer.OnPreparedListener,
             MediaPlayer.OnErrorListener{
         TextView textViewNameInVideo, textViewTimeInVideo;
@@ -442,6 +444,8 @@ public class RoomChatRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerVi
         }
     }
 
+    //ViewHolderVideoRight 자기 자신이 리스너가 되는 것입니다. implements View.OnClickListener,  MediaPlayer.OnPreparedListener,
+    //            MediaPlayer.OnErrorListener
     class ViewHolderVideoRight extends RecyclerView.ViewHolder  implements View.OnClickListener,  MediaPlayer.OnPreparedListener,
             MediaPlayer.OnErrorListener{
         TextView textViewNameInVideo, textViewTimeInVideo;
