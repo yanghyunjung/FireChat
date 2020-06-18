@@ -107,7 +107,8 @@ public class RoomChatRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerVi
         }
     }
 
-    class ViewHolderVideo extends RecyclerView.ViewHolder  implements View.OnClickListener {
+    class ViewHolderVideo extends RecyclerView.ViewHolder  implements View.OnClickListener,  MediaPlayer.OnPreparedListener,
+            MediaPlayer.OnErrorListener{
         TextView textViewNameInVideo, textViewTimeInVideo;
         //CheckBox checkBox;
         VideoView videoView;
@@ -143,19 +144,22 @@ public class RoomChatRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerVi
                 Log.v("pjw", "비디오 파일 없음");
             }
 
-            this.videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
-                @Override
-                public void onPrepared(MediaPlayer mp) {
-                    videoView.seekTo(0);
-                }
-            });
+//            this.videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+//                @Override
+//                public void onPrepared(MediaPlayer mp) {
+//                    videoView.seekTo(0);
+//                }
+//            });
+//
+//            this.videoView.setOnErrorListener(new MediaPlayer.OnErrorListener() {
+//                @Override
+//                public boolean onError(MediaPlayer mediaPlayer, int i, int i1) {
+//                    return true;
+//                }
+//            });
 
-            videoView.setOnErrorListener(new MediaPlayer.OnErrorListener() {
-                @Override
-                public boolean onError(MediaPlayer mediaPlayer, int i, int i1) {
-                    return true;
-                }
-            });
+            this.videoView.setOnPreparedListener(this);
+            this.videoView.setOnErrorListener(this);
         }
 
         @Override
@@ -237,6 +241,16 @@ public class RoomChatRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerVi
             }*/
 
             onClickRoomVideoListener.onClickRoomVideoListener(super.getAdapterPosition());
+        }
+
+        @Override
+        public void onPrepared(MediaPlayer mp) {
+            videoView.seekTo(0);
+        }
+
+        @Override
+        public boolean onError(MediaPlayer mediaPlayer, int i, int i1) {
+            return true;
         }
     }
 
@@ -428,7 +442,8 @@ public class RoomChatRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerVi
         }
     }
 
-    class ViewHolderVideoRight extends RecyclerView.ViewHolder  implements View.OnClickListener {
+    class ViewHolderVideoRight extends RecyclerView.ViewHolder  implements View.OnClickListener,  MediaPlayer.OnPreparedListener,
+            MediaPlayer.OnErrorListener{
         TextView textViewNameInVideo, textViewTimeInVideo;
         //CheckBox checkBox;
         VideoView videoView;
@@ -464,19 +479,22 @@ public class RoomChatRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerVi
                 Log.v("pjw", "비디오 파일 없음");
             }
 
-            this.videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
-                @Override
-                public void onPrepared(MediaPlayer mp) {
-                    videoView.seekTo(0);
-                }
-            });
+//            this.videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+//                @Override
+//                public void onPrepared(MediaPlayer mp) {
+//                    videoView.seekTo(0);
+//                }
+//            });
+//
+//            videoView.setOnErrorListener(new MediaPlayer.OnErrorListener() {
+//                @Override
+//                public boolean onError(MediaPlayer mediaPlayer, int i, int i1) {
+//                    return true;
+//                }
+//            });
 
-            videoView.setOnErrorListener(new MediaPlayer.OnErrorListener() {
-                @Override
-                public boolean onError(MediaPlayer mediaPlayer, int i, int i1) {
-                    return true;
-                }
-            });
+            this.videoView.setOnPreparedListener(this);
+            this.videoView.setOnErrorListener(this);
         }
 
         @Override
@@ -558,6 +576,16 @@ public class RoomChatRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerVi
             }*/
 
             onClickRoomVideoListener.onClickRoomVideoListener(super.getAdapterPosition());
+        }
+
+        @Override
+        public void onPrepared(MediaPlayer mp) {
+            videoView.seekTo(0);
+        }
+
+        @Override
+        public boolean onError(MediaPlayer mediaPlayer, int i, int i1) {
+            return true;
         }
     }
 
