@@ -35,6 +35,8 @@ public class RoomRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.V
         public void setData() {
             RoomItem roomItem = roomItemList.get(super.getAdapterPosition());
             this.textViewRoomTitle.setText(roomItem.getRoomName());
+
+            this.textViewRoomTitle.setOnClickListener(this);
         }
 
         @Override

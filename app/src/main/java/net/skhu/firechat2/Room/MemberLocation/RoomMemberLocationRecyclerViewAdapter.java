@@ -26,6 +26,8 @@ public class RoomMemberLocationRecyclerViewAdapter extends RecyclerView.Adapter<
             super(view);
             this.textViewRoomMemberLocation = view.findViewById(R.id.textViewRoomMemberLocation);
             view.setOnClickListener(this);
+
+            this.textViewRoomMemberLocation.setOnClickListener(this);
         }
 
         //RecyclerView에 보이는 내용을 설정하는 함수입니다.

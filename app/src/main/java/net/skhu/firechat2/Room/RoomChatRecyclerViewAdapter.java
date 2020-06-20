@@ -37,6 +37,7 @@ public class RoomChatRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerVi
             this.textView1 = view.findViewById(R.id.textView1);
             this.textView2 = view.findViewById(R.id.textView2);
             view.setOnClickListener(this);
+            this.textView1.setOnClickListener(this);
         }
 
         //RecyclerView에 보이는 내용을 설정하는 함수입니다.
@@ -68,6 +69,7 @@ public class RoomChatRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerVi
             this.textViewInPhoto = view.findViewById(R.id.textViewTimeInPhoto);
             this.imageViewPhoto = view.findViewById(R.id.imageViewPhoto);
             view.setOnClickListener(this);
+            imageViewPhoto.setOnClickListener(this);
         }
 
         //RecyclerView에 보이는 내용을 설정하는 함수입니다.
@@ -125,6 +127,7 @@ public class RoomChatRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerVi
             this.textViewTimeInVideo = view.findViewById(R.id.textViewTimeInVideo);
             this.videoView = view.findViewById(R.id.videoView);
             view.setOnClickListener(this);
+            videoView.setOnClickListener(this);
         }
 
         //RecyclerView에 보이는 내용을 설정하는 함수입니다.
@@ -258,6 +261,7 @@ public class RoomChatRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerVi
 
     class ViewHolderMusic extends RecyclerView.ViewHolder  implements View.OnClickListener {
         TextView textViewNameInMusic, textViewTimeInMusic;
+        ImageView imageViewMusicIcon;
         //CheckBox checkBox;
 
         String downloadFileName;
@@ -268,8 +272,10 @@ public class RoomChatRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerVi
             super(view);
             this.textViewNameInMusic = view.findViewById(R.id.textViewNameInMusic);
             this.textViewTimeInMusic = view.findViewById(R.id.textViewTimeInMusic);
+            this.imageViewMusicIcon = view.findViewById(R.id.imageView);
 
             view.setOnClickListener(this);
+            this.imageViewMusicIcon.setOnClickListener(this);
         }
 
         //RecyclerView에 보이는 내용을 설정하는 함수입니다.
@@ -372,7 +378,7 @@ public class RoomChatRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerVi
             this.textView1 = view.findViewById(R.id.textView1);
             this.textView2 = view.findViewById(R.id.textView2);
             view.setOnClickListener(this);
-
+            this.textView1.setOnClickListener(this);
             //textView1.setBackgroundResource(R.color.LeftChat);
         }
 
@@ -405,6 +411,7 @@ public class RoomChatRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerVi
             this.textViewInPhoto = view.findViewById(R.id.textViewTimeInPhoto);
             this.imageViewPhoto = view.findViewById(R.id.imageViewPhoto);
             view.setOnClickListener(this);
+            imageViewPhoto.setOnClickListener(this);
         }
 
         //RecyclerView에 보이는 내용을 설정하는 함수입니다.
@@ -462,6 +469,7 @@ public class RoomChatRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerVi
             this.textViewTimeInVideo = view.findViewById(R.id.textViewTimeInVideo);
             this.videoView = view.findViewById(R.id.videoView);
             view.setOnClickListener(this);
+            videoView.setOnClickListener(this);
         }
 
         //RecyclerView에 보이는 내용을 설정하는 함수입니다.
@@ -596,6 +604,7 @@ public class RoomChatRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerVi
     class ViewHolderMusicRight extends RecyclerView.ViewHolder  implements View.OnClickListener {
         TextView textViewNameInMusic, textViewTimeInMusic;
         //CheckBox checkBox;
+        ImageView imageViewMusicIcon;
 
         String downloadFileName;
         int selectVideoIndex;
@@ -605,8 +614,10 @@ public class RoomChatRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerVi
             super(view);
             this.textViewNameInMusic = view.findViewById(R.id.textViewNameInMusic);
             this.textViewTimeInMusic = view.findViewById(R.id.textViewTimeInMusic);
+            this.imageViewMusicIcon = view.findViewById(R.id.imageView);
 
             view.setOnClickListener(this);
+            this.imageViewMusicIcon.setOnClickListener(this);
         }
 
         //RecyclerView에 보이는 내용을 설정하는 함수입니다.
