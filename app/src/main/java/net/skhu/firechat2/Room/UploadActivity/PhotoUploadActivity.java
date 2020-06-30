@@ -255,97 +255,97 @@ public class PhotoUploadActivity extends AppCompatActivity {
     }
 
     public void returnResult(String uploadFileName){
-        //Uri externalUri = MediaStore.Images.Media.EXTERNAL_CONTENT_URI;
-        String[] projection = new String[]{
-                MediaStore.Images.Media._ID,
-                MediaStore.Images.Media.DISPLAY_NAME,
-                MediaStore.Images.Media.MIME_TYPE
-        };
-
-        Cursor cursor = getContentResolver().query(filePath, projection, null, null, null);
-
-        if (cursor == null || !cursor.moveToFirst()) {
-            Log.e("pjw", "cursor null or cursor is empty");
-        }
-        else {
-            do {
-                String contentUrl = filePath.toString() + "/" + cursor.getString(0);
-
-                Log.v("pjw", "contentUrl" + contentUrl);
-
-                path = getFilesDir();
-
-                //저장하는 파일의 이름
-                final File file = new File(path, uploadFileName);
-
-                try {
-                    file.createNewFile();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-
-                                /*Cursor cursor = getContentResolver().query(filePath, null, null, null);
-                                cursor.moveToNext();
-                                String pathStr = cursor.getString(cursor.getColumnIndex("_data"));
-                                cursor.close();
-
-                                final File originalFile = new File(pathStr);
-
-                                String downloadVideoName = filename;
-
-                                Log.v("pjw", "\noriginalFile Path " + originalFile.toString());
-                                Log.v("pjw", "\nfile Path " + file.toString());*/
-
-                try {
-
-                    FileInputStream inputStream = new FileInputStream(contentUrl);
-
-                    FileOutputStream outputStream = new FileOutputStream(file);
-
-                    int bytesRead = 0;
-
-                    byte[] buffer = new byte[1024];
-
-                    while ((bytesRead = inputStream.read(buffer, 0, 1024)) != -1) {
-                        outputStream.write(buffer, 0, bytesRead);
-                    }
-
-                    outputStream.close();
-
-                    inputStream.close();
-
-                } catch (FileNotFoundException e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                } catch (IOException e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                }
-
-                Log.v("pjw", "\nfile Path " + file.toString());
-
-                                /*try {
-                                    InputStream is = getContentResolver().openInputStream(Uri.parse(contentUrl));
-                                    OutputStream os;
-
-
-                                    int data = 0;
-                                    StringBuilder sb = new StringBuilder();
-
-                                    while ((data = is.read()) != -1) {
-                                        sb.append((char) data);
-                                    }
-
-                                    is.close();
-
-                                } catch (FileNotFoundException e) {
-                                    e.printStackTrace();
-                                } catch (IOException e) {
-                                    e.printStackTrace();
-                                }*/
-
-            } while (cursor.moveToNext());
-        }
+//        //Uri externalUri = MediaStore.Images.Media.EXTERNAL_CONTENT_URI;
+//        String[] projection = new String[]{
+//                MediaStore.Images.Media._ID,
+//                MediaStore.Images.Media.DISPLAY_NAME,
+//                MediaStore.Images.Media.MIME_TYPE
+//        };
+//
+//        Cursor cursor = getContentResolver().query(filePath, projection, null, null, null);
+//
+//        if (cursor == null || !cursor.moveToFirst()) {
+//            Log.e("pjw", "cursor null or cursor is empty");
+//        }
+//        else {
+//            do {
+//                String contentUrl = filePath.toString() + "/" + cursor.getString(0);
+//
+//                Log.v("pjw", "contentUrl" + contentUrl);
+//
+//                path = getFilesDir();
+//
+//                //저장하는 파일의 이름
+//                final File file = new File(path, uploadFileName);
+//
+//                try {
+//                    file.createNewFile();
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
+//
+//                                /*Cursor cursor = getContentResolver().query(filePath, null, null, null);
+//                                cursor.moveToNext();
+//                                String pathStr = cursor.getString(cursor.getColumnIndex("_data"));
+//                                cursor.close();
+//
+//                                final File originalFile = new File(pathStr);
+//
+//                                String downloadVideoName = filename;
+//
+//                                Log.v("pjw", "\noriginalFile Path " + originalFile.toString());
+//                                Log.v("pjw", "\nfile Path " + file.toString());*/
+//
+//                try {
+//
+//                    FileInputStream inputStream = new FileInputStream(contentUrl);
+//
+//                    FileOutputStream outputStream = new FileOutputStream(file);
+//
+//                    int bytesRead = 0;
+//
+//                    byte[] buffer = new byte[1024];
+//
+//                    while ((bytesRead = inputStream.read(buffer, 0, 1024)) != -1) {
+//                        outputStream.write(buffer, 0, bytesRead);
+//                    }
+//
+//                    outputStream.close();
+//
+//                    inputStream.close();
+//
+//                } catch (FileNotFoundException e) {
+//                    // TODO Auto-generated catch block
+//                    e.printStackTrace();
+//                } catch (IOException e) {
+//                    // TODO Auto-generated catch block
+//                    e.printStackTrace();
+//                }
+//
+//                Log.v("pjw", "\nfile Path " + file.toString());
+//
+//                                /*try {
+//                                    InputStream is = getContentResolver().openInputStream(Uri.parse(contentUrl));
+//                                    OutputStream os;
+//
+//
+//                                    int data = 0;
+//                                    StringBuilder sb = new StringBuilder();
+//
+//                                    while ((data = is.read()) != -1) {
+//                                        sb.append((char) data);
+//                                    }
+//
+//                                    is.close();
+//
+//                                } catch (FileNotFoundException e) {
+//                                    e.printStackTrace();
+//                                } catch (IOException e) {
+//                                    e.printStackTrace();
+//                                }*/
+//
+//            } while (cursor.moveToNext());
+//        }
 
         Intent intent = new Intent();
         intent.putExtra("downloadFileName", uploadFileName);
