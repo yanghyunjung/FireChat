@@ -6,16 +6,20 @@ import android.net.Uri;
 import android.util.Log;
 
 import net.skhu.firechat2.Item.RoomMemberLocationItem;
+import net.skhu.firechat2.ListenerInterface.RoomLocationListener.OnMapIntentPrepareListener;
 
 public class LocationIntentThread implements Runnable {
     //sleep을 사용하기 위해서 Thread를 사용해주었습니다.
     //View view;
     Context context;
     int selectIndex;
-    public LocationIntentThread(Context context, int selectIndex) {
+    OnMapIntentPrepareListener onMapIntentPrepareListener;
+
+    public LocationIntentThread(Context context, int selectIndex, OnMapIntentPrepareListener onMapIntentPrepareListener) {
         //this.view = view;
         this.context = context;
         this.selectIndex = selectIndex;
+        this.onMapIntentPrepareListener = onMapIntentPrepareListener;
     }
 
     public void run() {
@@ -28,6 +32,7 @@ public class LocationIntentThread implements Runnable {
             e.printStackTrace();
         }
 
+        onMapIntentPrepareListener.onMapIntentPrepareListener();
 
         RoomMemberLocationItem roomMemberLocationItem = activity.roomMemberLocationRecyclerViewAdapter.get(selectIndex);//업데이트 받은 것 저장
 

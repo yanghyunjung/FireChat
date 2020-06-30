@@ -293,9 +293,24 @@ public class RoomMemberLocationListActivity extends AppCompatActivity {
         firebaseDbServiceForRoomMemberLocationList.updateInServer(roomMemberLocationRecyclerViewAdapter.getKey(selectIndex),
                 roomMemberLocationRecyclerViewAdapter.get(selectIndex));//상대 방에게 업데이트 요청
 
-        LocationIntentThread locationIntentThread = new LocationIntentThread(this, selectIndex);
+        LocationIntentThread locationIntentThread = new LocationIntentThread(this, selectIndex,
+                ()->intentMapInit());
         Thread thread = new Thread(locationIntentThread, "locationIntentThread");
         thread.start();
+    }
+
+    public void intentMapInit(){
+        RoomMemberLocationItem roomMemberLocationItem = roomMemberLocationRecyclerViewAdapter.get(selectIndex);//업데이트 받은 것 저장
+
+        Log.v("pjw", "현재위치 \n위도 " + roomMemberLocationItem.getLatitude() + "\n경도 " + roomMemberLocationItem.getLongitude());
+
+        Intent intent = new Intent();
+        intent.setAction(Intent.ACTION_VIEW);
+        intent.setPackage("com.google.android.apps.maps");
+        //String data = "geo:"+roomMemberLocationItem.getLatitude()+", "+roomMemberLocationItem.getLongitude();
+        String data = LocationFunc.locationDataStr(roomMemberLocationItem.getLatitude(), roomMemberLocationItem.getLongitude());
+        intent.setData(Uri.parse(data));
+        startActivity(intent);
     }
 
     public void onAddedRoomMemberLocationListener(String key, RoomMemberLocationItem roomMemberLocationItem){
