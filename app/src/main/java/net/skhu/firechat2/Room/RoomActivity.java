@@ -689,13 +689,19 @@ public class RoomActivity extends AppCompatActivity {
                 @Override
                 public void onClick(DialogInterface dialog, int index) {
                     // 삭제 작업 실행
-                    removeAll();
+
 
                     closedRoom = true;
 
                     closeRoomThread = new CloseRoomThread(()->closeRoom());
                     Thread t = new Thread(closeRoomThread,"closeRoomThread");
                     t.start();
+
+                    if (roomChatRecyclerViewAdapter.size() == 0){
+                        closeRoomThread.cancel();
+                    }
+
+                    removeAll();
 
 //                    Intent intent = new Intent();
 //                    intent.putExtra("roomKey", roomKey);
