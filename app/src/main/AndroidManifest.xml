@@ -16,13 +16,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Room.Preview.VideoPreviewActivity" android:label="@string/videoPreview" ></activity>
-        <activity android:name=".Room.Preview.PhotoPreviewActivity" android:label="@string/photoPreview" />
-        <activity android:name=".Room.UploadActivity.PhotoUploadActivity" android:label="@string/action_photoUpload" />
-        <activity android:name=".Room.MemberLocation.RoomMemberLocationListActivity" android:label="@string/action_showMemberLocation"/>
-        <activity android:name=".Room.UploadActivity.MusicUploadActivity" android:label="@string/action_musicUpload"/>
-        <activity android:name=".Room.RoomActivity" />
-        <activity android:name=".Room.UploadActivity.VideoUploadActivity" android:label="@string/action_videoUpload"/>
+        <activity android:name=".Room.Preview.VideoPreviewActivity"
+            android:label="@string/videoPreview"></activity>
+        <activity android:name=".Room.Preview.PhotoPreviewActivity"
+            android:label="@string/photoPreview"/>
+        <activity android:name=".Room.UploadActivity.PhotoUploadActivity"
+            android:label="@string/action_photoUpload"/>
+        <activity android:name=".Room.MemberLocation.RoomMemberLocationListActivity"
+            android:label="@string/action_showMemberLocation"/>
+        <activity android:name=".Room.UploadActivity.MusicUploadActivity"
+            android:label="@string/action_musicUpload"/>
+        <activity android:name=".Room.RoomActivity"/>
+        <activity android:name=".Room.UploadActivity.VideoUploadActivity"
+            android:label="@string/action_videoUpload"/>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
